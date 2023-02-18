@@ -145,47 +145,18 @@ void solve()
     {
         cin>>vec[i];
     }
-    int cnt=0;
-    sort(all(vec));
-    if(n==2)
-    {
-        cout<<vec[1]<<sp<<vec[0]<<endl;
-    }
-    // for(int i=0;i<n-1;i++)
-    // {
-    //     int k=vec[i+1]%vec[i];
-    //     bool m=binary_search(all(vec),k);
-    //     if(m==0)
-    //     {
-    //         cout<<vec[i+1]<<sp<<vec[i]<<endl;
-    //         cnt++;
-    //     }
-    //     if(cnt==(n/2)) return;
-    //     int l=vec[i]%vec[i+1];
-    //     bool o=binary_search(all(vec),l);
-    //     if(o==0)
-    //     {
-    //         cout<<vec[i]<<sp<<vec[i+1]<<endl;
-    //         cnt++;
-    //     }
-    //      if(cnt==(n/2)) return;
-
-    // }
-    for(int i=0;i<n;i++)
-    {
-        for(int j=i+1;j<n-1;j++)
+   sort(all(vec));
+   int mn=vec[0];
+   int cnt=0;
+   for(int i=0;i<n;i++)
+   {
+        if(vec[i]!=mn)
         {
-            int k=vec[j]%vec[i];
-            int m=binary_search(all(vec),k);
-            if(m==0)
-            {
-                cout<<vec[j]<<sp<<vec[i]<<endl;
-                cnt++;
-            }
-            if(cnt==n/2) return;
+            cout<<vec[i]<<sp<<mn<<endl;
+            cnt++;
         }
-    }
-
+        if(cnt==n/2) break;
+   }
 
 }
 
