@@ -167,7 +167,7 @@ void solve()
     s[i]=tolower(s[i]);
     mp[s[i]]++;
    }
-   if(mp.size()>4 or mp.size()<3)
+   if(mp.size()>4 or mp.size()<=3)
    {
     cout<<"NO"<<el;
     return;
