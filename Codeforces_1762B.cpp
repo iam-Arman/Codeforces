@@ -155,11 +155,10 @@ void solve()
      else 
      {
        ll x=log2(vec[i]);
-       ll y=pow(2,(x+1));
+       ll y=1<<(x+1);
        p.pb(make_pair(i+1,y-vec[i]));
      }
   }
-
  cout<<p.size()<<el;
   for(auto x:p)
   {
