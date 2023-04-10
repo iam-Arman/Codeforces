@@ -136,78 +136,58 @@ bool sort_by_sec(const pair<int,int> &a,const pair<int,int> &b)
 
                                                     ///  CODE STARTS FROM HERE    ///
 
-ll mul(ll n)
+
+bool is_mountain(vector<int> &vec)
 {
-  ll a=n*(n+1)%mod;
-  a=a*(2*n+1)%mod;
-  a=(a*bigmod(6,mod-2))%mod;
-  return a;
-}
-
-ll sum(ll n)
-{
-  n=(n%mod*(n+1)%mod)%mod;
-
-  n=(n*bigmod(2,mod-2))%mod;
-
-  return n;
+   bool ok=false;
+   for(int i=0;i<vec.size()-1;i++)
+   {
+    if(!ok)
+    {
+      if(vec[i]>vec[i+1]) 
+     {
+        ok=true;
+      }
+    }
+    if(ok)
+    {
+       if(vec[i]<vec[i+1])
+       {
+        return false;
+       }
+    }
+   }
+   return true;
 }
 
 void solve()
-{ 
-  ll n;
-  cin>>n;
-
-  vector<int> vec(n);
-  map<int,int> mp;
-
-  ll sum=0;
-
-  for(int i=0;i<n;i++)
-  {
+{
+   int n;
+    cin>>n;
+   vector<int> vec(n);
+   for(int i=0;i<n-1;i++)
+   {
     cin>>vec[i];
-    sum+=vec[i];
-    mp[vec[i]]++;
-  }
+   }
 
-  double mean=(double)sum/n;
+   vector<int> a(n);
 
-  double check=mean*(n-2);
+   a[0]=vec[0];
 
-  if((ll)check!=check)
-  {
-     cout<<0<<el;
-     return;
-  }
+   for(int i=1;i<n-1;i++)
+   {
+      a[i]=min(vec[i-1],vec[i]);
 
-  ll required=sum-(ll)check;
+   }
+   a[n-1]=vec[n-2];
 
-  ll ans1=0;
-  ll ans2=0;
-
-  for(auto x: mp)
-  {
-    ll k=required-x.first;
-
-    if(k==x.first)
-    {
-        ans1+=1LL*mp[k]*(mp[k]-1)/2;
-    }
-    else
-    {
-        ans2+=1LL*mp[k]*x.second;
-    }
-  }
-
-  ll ans=ans1+(ans2)/2;
-  cout<<ans<<endl;
-
-
-
+   for(int i=0;i<n;i++)
+   {
+    cout<<a[i]<<sp;
+   }
+   cout<<el;  
    
 }
-
-
 
 
 int main()
@@ -224,5 +204,5 @@ int main()
 
 }
 
-// problem link :  https://codeforces.com/contest/1811/problem/C
 
+// problem link : https://codeforces.com/contest/1811/problem/C
