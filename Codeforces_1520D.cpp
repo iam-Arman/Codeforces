@@ -50,6 +50,8 @@ freopen("output.txt", "w", stdout);
 }
 
 
+
+
                                                     /////    FUNCTIONS     /////
 
 
@@ -118,6 +120,16 @@ int GCD(ll a,ll b)
   if(a==b) return a;
   else if(b==0) return a;
   else return GCD(b,a%b);
+}
+
+bool sort_by_sec(const pair<int,int> &a,const pair<int,int> &b)
+{
+    if(a.first>b.first) return true;
+    else if(a.first==b.first)
+    {
+        return a.second<b.second;
+    }
+    else return false;
 }
 
 
