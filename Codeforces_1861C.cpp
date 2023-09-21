@@ -126,103 +126,58 @@ int dy[]={ 0, 0 ,-1 , 1 , -1 , 1,-1, 1};
 
                                                     ///  CODE STARTS FROM HERE    ///
 
-bool isbeautiful(string s)
-{
-    stack<char> st;
-    for(int i=0;i<s.size();i++)
-    {
-        if(s[i]=='(')
-        {
-            st.push(s[i]);
-        }
-        else 
-        {
-            if(!st.empty() and st.top()=='(') st.pop();
-            else return false;
-        }
-    }
 
-    return st.size()==0;
-}
 void solve()
 {   
-    int n;
-    cin>>n;
     string s;
     cin>>s;
-    if(n%2==1)
-    {
-        cout<<-1<<el;
-        return;
-    }
-    int cntl=count(all(s),'(');
-    int cntr=count(all(s),')');
-    if(cntl!=cntr)
-    {
-        cout<<-1<<el;
-        return;
-    }
-    if(isbeautiful(s))
-    {
-        cout<<1<<el;
-        for(int i=0;i<n;i++)
-        {
-            cout<<1<<sp;
-        }
-        cout<<el;
-        return;
-    }
+    int n=sz(s);
 
-    string rev="";
-    for(int i=n-1;i>=0;i--)
-    {
-        rev+=s[i];
-    }
-
-    if(isbeautiful(rev))
-    {
-        cout<<1<<el;
-        for(int i=0;i<n;i++)
-        {
-            cout<<1<<sp;
-        }
-        cout<<el;
-        return;
-    }
-
-     vector<int> ans(n);
-
-    stack<pair<char,int>> st;
-
+    stack<int> st;
     for(int i=0;i<n;i++)
     {
-        if(st.empty()) st.push({s[i],i});
+        if(s[i]=='+')
+        {
+            if(st.empty()) st.push(1);
+            else if(st.top()==-1) st.push(-1);
+            else st.push(0); 
+        }
+        else if(s[i]=='-')
+        {
+            if(st.top()==1)
+            {
+                st.pop();
+               if(!st.empty()) st.top()=1;
+            }
+            else st.pop();
+        }
+        else if(s[i]=='1')
+        {
+            if(st.size()<2) continue;
+            if(st.top()==-1)
+            {
+                noo;
+                return;
+            }
+            st.top()=1;
+        }
         else
         {
-            if(!st.empty() and st.top().ff=='(' and s[i]==')')
+            if(st.size()<2)
             {
-                ans[st.top().second]=1;
-                ans[i]=1;
-                st.pop();
+                noo;
+                return;
             }
-            else st.push({s[i],i});
+           else if(st.top()==1)
+           {
+                noo;
+                return;
+           }
+           else st.top()=-1;
         }
     }
 
-    while(!st.empty())
-    {
-        ans[st.top().second]=2;
-        st.pop();
-    }
-
-    cout<<2<<el;
-
-    for(int i=0;i<n;i++)
-    {
-        cout<<ans[i]<<sp;
-    }
-    cout<<el;
-
+    yess;
 
 }
 
@@ -233,10 +188,9 @@ int main()
     file();
 
     clock_t q= clock();
-    int casee=1;
     test
     { 
-       // cout<<"Case "<<casee++<<": ";
+    
       solve();
     }
 
